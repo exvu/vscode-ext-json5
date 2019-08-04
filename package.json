@@ -1,0 +1,83 @@
+{
+	"name": "json5",
+	"displayName": "json5",
+	"description": "",
+	"version": "0.0.1",
+	"keywords": [
+		"json5",
+		"json"
+	],
+	"publisher": "exvu",
+	"engines": {
+		"vscode": "^1.36.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.toJson",
+		"onCommand:extension.toJson5"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.toJson",
+				"title": "json5：生成json文件"
+			},
+			{
+				"command": "extension.toJson5",
+				"title": "json5：生成json5文件"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus && resourceLangId == json5",
+					"command": "extension.toJson",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus && resourceLangId == json",
+					"command": "extension.toJson5",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "resourceLangId == json5",
+					"command": "extension.toJson",
+					"group": "navigation"
+				},
+				{
+					"when": "resourceLangId == json",
+					"command": "extension.toJson5",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.36.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode-test": "^1.0.2"
+	},
+	"dependencies": {
+		"@types/json5": "^0.0.30",
+		"json-format": "^1.0.1",
+		"json5": "^2.1.0"
+	}
+}
